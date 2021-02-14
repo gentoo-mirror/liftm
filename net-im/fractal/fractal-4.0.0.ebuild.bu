@@ -1,0 +1,608 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+DESCRIPTION="Matrix group messaging app"
+HOMEPAGE="https://wiki.gnome.org/Apps/Fractal"
+
+CARGO_DEPS=(
+	adler32-1.0.3.txz
+	aho-corasick-0.6.9.txz
+	ammonia-1.2.0.txz
+	ansi_term-0.11.0.txz
+	argon2rs-0.2.5.txz
+	arrayref-0.3.5.txz
+	arrayvec-0.4.10.txz
+	atk-sys-0.7.0.txz
+	atty-0.2.11.txz
+	autocfg-0.1.1.txz
+	backtrace-0.3.13.txz
+	backtrace-sys-0.1.28.txz
+	base64-0.10.0.txz
+	bincode-1.0.1.txz
+	bitflags-1.0.4.txz
+	blake2-rfc-0.2.18.txz
+	block-0.1.6.txz
+	block-buffer-0.3.3.txz
+	byteorder-1.2.7.txz
+	bytes-0.4.11.txz
+	byte-tools-0.2.0.txz
+	cairo-rs-0.5.0.txz
+	cairo-sys-rs-0.7.0.txz
+	cc-1.0.28.txz
+	cfg-if-0.1.6.txz
+	chrono-0.4.6.txz
+	clap-2.32.0.txz
+	cloudabi-0.0.3.txz
+	comrak-0.4.0.txz
+	constant_time_eq-0.1.3.txz
+	core-foundation-0.5.1.txz
+	core-foundation-sys-0.5.1.txz
+	crc32fast-1.1.2.txz
+	crossbeam-channel-0.3.6.txz
+	crossbeam-deque-0.6.3.txz
+	crossbeam-epoch-0.7.0.txz
+	crossbeam-utils-0.6.3.txz
+	dbus-0.2.3-0.2.3.txz
+	dbus-0.6.4.txz
+	digest-0.7.6.txz
+	directories-1.0.2.txz
+	dirs-1.0.4.txz
+	dtoa-0.4.3.txz
+	either-1.5.0.txz
+	encoding_rs-0.8.14.txz
+	entities-1.0.1.txz
+	error-chain-0.10.0-0.10.0.txz
+	error-chain-0.12.0.txz
+	failure-0.1.5.txz
+	failure_derive-0.1.5.txz
+	fake-simd-0.1.2.txz
+	fixedbitset-0.1.9.txz
+	fnv-1.0.6.txz
+	foreign-types-0.3.2.txz
+	foreign-types-shared-0.1.1.txz
+	fragile-0.3.0.txz
+	fuchsia-zircon-0.3.3.txz
+	fuchsia-zircon-sys-0.3.3.txz
+	futf-0.1.4.txz
+	futures-0.1.25.txz
+	futures-cpupool-0.1.8.txz
+	gcc-0.3.55.txz
+	gdk-0.9.0.txz
+	gdk-pixbuf-0.5.0.txz
+	gdk-pixbuf-sys-0.7.0.txz
+	gdk-sys-0.7.0.txz
+	generic-array-0.9.0.txz
+	gettext-rs-0.4.1.txz
+	gettext-sys-0.19.8.txz
+	gio-0.5.1.txz
+	gio-sys-0.7.0.txz
+	glib-0.6.1.txz
+	glib-sys-0.7.0.txz
+	gobject-sys-0.7.0.txz
+	gspell-0.1.1.txz
+	gspell-sys-0.2.0.txz
+	gstreamer-0.12.2.txz
+	gstreamer-base-0.12.2.txz
+	gstreamer-base-sys-0.6.2.txz
+	gstreamer-player-0.12.2.txz
+	gstreamer-player-sys-0.6.2.txz
+	gstreamer-sys-0.6.2.txz
+	gstreamer-video-0.12.2.txz
+	gstreamer-video-sys-0.6.2.txz
+	gtk-0.5.0.txz
+	gtk-source-sys-0.7.0.txz
+	gtk-sys-0.7.0.txz
+	h2-0.1.15.txz
+	html2pango-0.1.0.txz
+	html5ever-0.22.5.txz
+	http-0.1.14.txz
+	httparse-1.3.3.txz
+	hyper-0.12.20.txz
+	hyper-tls-0.3.1.txz
+	idna-0.1.5.txz
+	indexmap-1.0.2.txz
+	iovec-0.1.2.txz
+	itertools-0.8.0.txz
+	itoa-0.4.3.txz
+	kernel32-sys-0.2.2.txz
+	lazycell-1.2.1.txz
+	lazy_static-0.2.11-0.2.11.txz
+	lazy_static-1.2.0.txz
+	letter-avatar-1.0.2.txz
+	libc-0.2.47.txz
+	libdbus-sys-0.1.5.txz
+	libflate-0.1.19.txz
+	libhandy-0.1.0.txz
+	libhandy-sys-0.1.0.txz
+	linkify-0.3.1.txz
+	lmdb-0.8.0.txz
+	lmdb-sys-0.8.0.txz
+	locale_config-0.2.2.txz
+	lock_api-0.1.5.txz
+	log-0.4.6.txz
+	mac-0.1.1.txz
+	mac-notification-sys-0.1.3.txz
+	MacTypes-sys-1.3.0.txz
+	malloc_buf-0.0.6.txz
+	maplit-1.0.1.txz
+	markup5ever-0.7.5.txz
+	matches-0.1.8.txz
+	md5-0.6.1.txz
+	mdl-1.0.4.txz
+	memchr-2.1.2.txz
+	memoffset-0.2.1.txz
+	mime-0.3.13.txz
+	mime_guess-2.0.0-alpha.6.txz
+	mio-0.6.16.txz
+	miow-0.2.1.txz
+	muldiv-0.2.0.txz
+	native-tls-0.2.2.txz
+	net2-0.2.33.txz
+	new_debug_unreachable-1.0.1.txz
+	nodrop-0.1.13.txz
+	nom-2.2.1.txz
+	notify-rust-3.5.0.txz
+	num-0.1.42.txz
+	num-bigint-0.1.44.txz
+	num-complex-0.1.43.txz
+	num_cpus-1.9.0.txz
+	num-integer-0.1.39.txz
+	num-iter-0.1.37.txz
+	num-rational-0.1.42-0.1.42.txz
+	num-rational-0.2.1.txz
+	num-traits-0.2.6.txz
+	objc-0.2.5.txz
+	objc-foundation-0.1.1.txz
+	objc_id-0.1.1.txz
+	openssl-0.10.16.txz
+	openssl-probe-0.1.2.txz
+	openssl-sys-0.9.40.txz
+	ordermap-0.3.5.txz
+	owning_ref-0.3.3-0.3.3.txz
+	owning_ref-0.4.0.txz
+	pango-0.5.0.txz
+	pangocairo-0.6.0.txz
+	pangocairo-sys-0.8.0.txz
+	pango-sys-0.7.0.txz
+	parking_lot-0.4.8-0.4.8.txz
+	parking_lot-0.7.1.txz
+	parking_lot_core-0.2.14-0.2.14.txz
+	parking_lot_core-0.4.0.txz
+	percent-encoding-1.0.1.txz
+	pest-2.1.0.txz
+	pest_derive-2.1.0.txz
+	pest_generator-2.1.0.txz
+	pest_meta-2.1.0.txz
+	petgraph-0.4.13.txz
+	phf-0.7.24.txz
+	phf_codegen-0.7.24.txz
+	phf_generator-0.7.24.txz
+	phf_shared-0.7.24.txz
+	pkg-config-0.3.14.txz
+	precomputed-hash-0.1.1.txz
+	proc-macro2-0.4.24.txz
+	quote-0.6.10.txz
+	rand-0.3.22-0.3.22.txz
+	rand-0.4.5-0.4.5.txz
+	rand-0.5.5-0.5.5.txz
+	rand-0.6.4.txz
+	rand_chacha-0.1.1.txz
+	rand_core-0.2.2-0.2.2.txz
+	rand_core-0.3.0.txz
+	rand_hc-0.1.0.txz
+	rand_isaac-0.1.1.txz
+	rand_os-0.1.1.txz
+	rand_pcg-0.1.1.txz
+	rand_xorshift-0.1.1.txz
+	rdrand-0.4.0.txz
+	redox_syscall-0.1.50.txz
+	redox_termios-0.1.1.txz
+	redox_users-0.2.0.txz
+	regex-0.2.11-0.2.11.txz
+	regex-1.1.0.txz
+	regex-syntax-0.5.6-0.5.6.txz
+	regex-syntax-0.6.4.txz
+	remove_dir_all-0.5.1.txz
+	reqwest-0.9.8.txz
+	rustc-demangle-0.1.13.txz
+	rust-crypto-0.2.36.txz
+	rustc-serialize-0.3.24.txz
+	rustc_version-0.2.3.txz
+	rust-gmp-0.3.2.txz
+	ryu-0.2.7.txz
+	schannel-0.1.14.txz
+	scoped_threadpool-0.1.9.txz
+	scopeguard-0.3.3.txz
+	secret-service-0.4.0.txz
+	security-framework-0.2.1.txz
+	security-framework-sys-0.2.2.txz
+	semver-0.9.0.txz
+	semver-parser-0.7.0.txz
+	serde-1.0.84.txz
+	serde_derive-1.0.84.txz
+	serde_json-1.0.35.txz
+	serde_urlencoded-0.5.4.txz
+	sha-1-0.7.0.txz
+	siphasher-0.2.3.txz
+	slab-0.4.2.txz
+	smallvec-0.6.7.txz
+	sourceview-0.5.0.txz
+	stable_deref_trait-1.1.1.txz
+	string-0.1.3.txz
+	string_cache-0.7.3.txz
+	string_cache_codegen-0.4.2.txz
+	string_cache_shared-0.3.0.txz
+	strsim-0.7.0.txz
+	syn-0.15.25.txz
+	synstructure-0.10.1.txz
+	tempfile-3.0.5.txz
+	tendril-0.4.1.txz
+	termion-1.5.1.txz
+	textwrap-0.10.0.txz
+	thread_local-0.3.6.txz
+	time-0.1.42.txz
+	tokio-0.1.14.txz
+	tokio-current-thread-0.1.4.txz
+	tokio-executor-0.1.6.txz
+	tokio-io-0.1.11.txz
+	tokio-reactor-0.1.8.txz
+	tokio-tcp-0.1.3.txz
+	tokio-threadpool-0.1.10.txz
+	tokio-timer-0.2.8.txz
+	tree_magic-0.2.1.txz
+	try-lock-0.2.2.txz
+	twoway-0.1.8.txz
+	typed-arena-1.4.1.txz
+	typenum-1.10.0.txz
+	ucd-trie-0.1.1.txz
+	ucd-util-0.1.3.txz
+	unicase-1.4.2-1.4.2.txz
+	unicase-2.2.0.txz
+	unicode-bidi-0.3.4.txz
+	unicode_categories-0.1.1.txz
+	unicode-normalization-0.1.7.txz
+	unicode-segmentation-1.2.1.txz
+	unicode-width-0.1.5.txz
+	unicode-xid-0.1.0.txz
+	unreachable-1.0.0.txz
+	url-1.7.2.txz
+	urlencoding-1.0.0.txz
+	utf-8-0.7.5.txz
+	utf8-ranges-1.0.2.txz
+	uuid-0.7.1.txz
+	vcpkg-0.2.6.txz
+	vec_map-0.8.1.txz
+	version_check-0.1.5.txz
+	void-1.0.2.txz
+	want-0.0.6.txz
+	winapi-0.2.8-0.2.8.txz
+	winapi-0.3.6.txz
+	winapi-build-0.1.1.txz
+	winapi-i686-pc-windows-gnu-0.4.0.txz
+	winapi-x86_64-pc-windows-gnu-0.4.0.txz
+	ws2_32-sys-0.2.1.txz
+)
+CARGO_DEPS=(${CARGO_DEPS[@]/#/https:\/\/cloudflare-ipfs.com/ipfs/QmSqiEQfZxDBoycgx7xvtsHevBfrqqj3PaXQ2CWJ8XskvT\/rs-})
+
+CRATES="
+adler32-1.0.3
+aho-corasick-0.6.9
+ammonia-1.2.0
+ansi_term-0.11.0
+argon2rs-0.2.5
+arrayref-0.3.5
+arrayvec-0.4.9
+atk-sys-0.7.0
+atty-0.2.11
+autocfg-0.1.1
+backtrace-0.3.13
+backtrace-sys-0.1.26
+base64-0.9.3
+bincode-1.0.1
+bitflags-1.0.4
+blake2-rfc-0.2.18
+block-0.1.6
+block-buffer-0.3.3
+byte-tools-0.2.0
+byteorder-1.2.7
+bytes-0.4.11
+cairo-rs-0.5.0
+cairo-sys-rs-0.7.0
+cc-1.0.28
+cfg-if-0.1.6
+chrono-0.4.6
+clap-2.32.0
+cloudabi-0.0.3
+comrak-0.4.0
+constant_time_eq-0.1.3
+core-foundation-0.5.1
+core-foundation-sys-0.5.1
+crc32fast-1.1.2
+crossbeam-deque-0.6.3
+crossbeam-epoch-0.7.0
+crossbeam-utils-0.6.3
+dbus-0.2.3
+dbus-0.6.3
+digest-0.7.6
+dirs-1.0.4
+dtoa-0.4.3
+either-1.5.0
+encoding_rs-0.8.13
+entities-1.0.1
+error-chain-0.10.0
+error-chain-0.12.0
+failure-0.1.3
+failure_derive-0.1.3
+fake-simd-0.1.2
+fixedbitset-0.1.9
+fnv-1.0.6
+foreign-types-0.3.2
+foreign-types-shared-0.1.1
+fragile-0.3.0
+fuchsia-zircon-0.3.3
+fuchsia-zircon-sys-0.3.3
+futf-0.1.4
+futures-0.1.25
+futures-cpupool-0.1.8
+gcc-0.3.55
+gdk-0.9.0
+gdk-pixbuf-0.5.0
+gdk-pixbuf-sys-0.7.0
+gdk-sys-0.7.0
+generic-array-0.9.0
+gettext-rs-0.4.1
+gettext-sys-0.19.8
+gio-0.5.1
+gio-sys-0.7.0
+glib-0.6.1
+glib-sys-0.7.0
+gobject-sys-0.7.0
+gstreamer-0.12.2
+gstreamer-base-0.12.2
+gstreamer-base-sys-0.6.2
+gstreamer-player-0.12.2
+gstreamer-player-sys-0.6.2
+gstreamer-sys-0.6.2
+gstreamer-video-0.12.2
+gstreamer-video-sys-0.6.2
+gtk-0.5.0
+gtk-source-sys-0.7.0
+gtk-sys-0.7.0
+h2-0.1.14
+html2pango-0.1.0
+html5ever-0.22.5
+http-0.1.14
+httparse-1.3.3
+hyper-0.12.19
+hyper-tls-0.3.1
+idna-0.1.5
+indexmap-1.0.2
+iovec-0.1.2
+itertools-0.8.0
+itoa-0.4.3
+kernel32-sys-0.2.2
+lazy_static-0.2.11
+lazy_static-1.2.0
+lazycell-1.2.1
+letter-avatar-1.0.2
+libc-0.2.45
+libdbus-sys-0.1.4
+libflate-0.1.19
+libhandy-0.2.0
+linkify-0.3.1
+lmdb-0.8.0
+lmdb-sys-0.8.0
+locale_config-0.2.2
+lock_api-0.1.5
+log-0.4.6
+mac-0.1.1
+mac-notification-sys-0.1.3
+malloc_buf-0.0.6
+maplit-1.0.1
+markup5ever-0.7.5
+matches-0.1.8
+md5-0.6.1
+mdl-1.0.4
+memchr-2.1.2
+memoffset-0.2.1
+mime-0.3.12
+mime_guess-2.0.0-alpha.6
+mio-0.6.16
+mio-uds-0.6.7
+miow-0.2.1
+muldiv-0.2.0
+native-tls-0.2.2
+net2-0.2.33
+new_debug_unreachable-1.0.1
+nodrop-0.1.13
+nom-2.2.1
+notify-rust-3.5.0
+num-0.1.42
+num-bigint-0.1.44
+num-complex-0.1.43
+num-integer-0.1.39
+num-iter-0.1.37
+num-rational-0.1.42
+num-rational-0.2.1
+num-traits-0.2.6
+num_cpus-1.9.0
+objc-0.2.5
+objc-foundation-0.1.1
+objc_id-0.1.1
+openssl-0.10.16
+openssl-probe-0.1.2
+openssl-sys-0.9.40
+ordermap-0.3.5
+owning_ref-0.3.3
+owning_ref-0.4.0
+pango-0.5.0
+pango-sys-0.7.0
+pangocairo-0.6.0
+pangocairo-sys-0.8.0
+parking_lot-0.4.8
+parking_lot-0.6.4
+parking_lot_core-0.2.14
+parking_lot_core-0.3.1
+percent-encoding-1.0.1
+pest-2.1.0
+pest_derive-2.1.0
+pest_generator-2.1.0
+pest_meta-2.1.0
+petgraph-0.4.13
+phf-0.7.23
+phf_codegen-0.7.23
+phf_generator-0.7.23
+phf_shared-0.7.23
+pkg-config-0.3.14
+precomputed-hash-0.1.1
+proc-macro2-0.4.24
+quote-0.6.10
+rand-0.3.22
+rand-0.4.3
+rand-0.5.5
+rand-0.6.1
+rand_chacha-0.1.0
+rand_core-0.2.2
+rand_core-0.3.0
+rand_hc-0.1.0
+rand_isaac-0.1.1
+rand_pcg-0.1.1
+rand_xorshift-0.1.0
+redox_syscall-0.1.44
+redox_termios-0.1.1
+redox_users-0.2.0
+regex-0.2.11
+regex-1.1.0
+regex-syntax-0.5.6
+regex-syntax-0.6.4
+remove_dir_all-0.5.1
+reqwest-0.9.5
+rust-crypto-0.2.36
+rust-gmp-0.3.2
+rustc-demangle-0.1.11
+rustc-serialize-0.3.24
+rustc_version-0.2.3
+ryu-0.2.7
+safemem-0.3.0
+schannel-0.1.14
+scoped_threadpool-0.1.9
+scopeguard-0.3.3
+secret-service-0.4.0
+security-framework-0.2.1
+security-framework-sys-0.2.1
+semver-0.9.0
+semver-parser-0.7.0
+serde-1.0.82
+serde_derive-1.0.82
+serde_json-1.0.33
+serde_urlencoded-0.5.4
+sha-1-0.7.0
+siphasher-0.2.3
+slab-0.4.1
+smallvec-0.6.7
+sourceview-0.5.0
+stable_deref_trait-1.1.1
+string-0.1.2
+string_cache-0.7.3
+string_cache_codegen-0.4.2
+string_cache_shared-0.3.0
+strsim-0.7.0
+syn-0.15.23
+synstructure-0.10.1
+tempfile-3.0.5
+tendril-0.4.1
+termion-1.5.1
+textwrap-0.10.0
+thread_local-0.3.6
+time-0.1.41
+tokio-0.1.13
+tokio-codec-0.1.1
+tokio-current-thread-0.1.4
+tokio-executor-0.1.5
+tokio-fs-0.1.4
+tokio-io-0.1.10
+tokio-reactor-0.1.7
+tokio-tcp-0.1.2
+tokio-threadpool-0.1.9
+tokio-timer-0.2.8
+tokio-udp-0.1.3
+tokio-uds-0.2.4
+tree_magic-0.2.1
+try-lock-0.2.2
+twoway-0.1.8
+typed-arena-1.4.1
+typenum-1.10.0
+ucd-trie-0.1.1
+ucd-util-0.1.3
+unicase-1.4.2
+unicase-2.2.0
+unicode-bidi-0.3.4
+unicode-normalization-0.1.7
+unicode-segmentation-1.2.1
+unicode-width-0.1.5
+unicode-xid-0.1.0
+unicode_categories-0.1.1
+unreachable-1.0.0
+url-1.7.2
+urlencoding-1.0.0
+utf-8-0.7.4
+utf8-ranges-1.0.2
+uuid-0.7.1
+vcpkg-0.2.6
+vec_map-0.8.1
+version_check-0.1.5
+void-1.0.2
+want-0.0.6
+winapi-0.2.8
+winapi-0.3.6
+winapi-build-0.1.1
+winapi-i686-pc-windows-gnu-0.4.0
+winapi-x86_64-pc-windows-gnu-0.4.0
+ws2_32-sys-0.2.1
+"
+#handy-sys-0.2.0
+
+inherit meson xdg-utils cargo
+
+SRC_URI="https://gitlab.gnome.org/GNOME/${PN}/-/archive/${PV}/${P}.tar.gz
+	http://liftm.de/Misc/fractal-deps-not-crates.io/fractal-4.0.0-git-deps-vendored.txz
+	$(cargo_crate_uris ${CRATES})
+"
+#	${CARGO_DEPS[@]}
+#"
+
+KEYWORDS="~amd64 ~x86"
+
+LICENSE="GPL-3"
+SLOT="0"
+IUSE=""
+
+RDEPEND="
+	>=app-text/gspell-1.8.1
+	>=x11-libs/cairo-1.16.0
+	x11-libs/gtksourceview
+	dev-libs/libhandy"
+	#>=virtual/rust-1.31.1
+DEPEND="${RDEPEND}"
+BDEPEND="dev-util/ninja
+	dev-util/meson"
+
+src_prepare() {
+	mkdir -p .cargo
+	touch .cargo/config
+	cat "${FILESDIR}/cargo-config-vendored" >>.cargo/config
+	ln -s ../vendored/ vendor
+	default
+}
+
+src_test() {
+    cargo test || die "tests failed"
+}
+
+src_install() {
+	cd fractal-gtk
+    cargo_src_install
+    dodoc CONTRIBUTING.md README.md
+}

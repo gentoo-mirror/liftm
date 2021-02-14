@@ -1,0 +1,24 @@
+diff -up sdr-j-dabreceiver-0.98/large-gui/sdr-j-dabreceiver-098.pro.binary sdr-j-dabreceiver-0.98/large-gui/sdr-j-dabreceiver-098.pro
+--- sdr-j-dabreceiver-0.98/large-gui/sdr-j-dabreceiver-098.pro.binary	2015-02-26 02:12:32.000000000 +0100
++++ sdr-j-dabreceiver-0.98/large-gui/sdr-j-dabreceiver-098.pro	2015-02-13 12:43:50.000000000 +0100
+@@ -177,7 +177,7 @@ LIBS	+= -lusb-1.0
+ 
+ ##for fedora and Ubuntu use the second set
+ unix {
+-DESTDIR		= ../../../linux-bin
++DESTDIR		= ../linux-bin
+ INCLUDEPATH	+= /usr/include/qwt
+ INCLUDEPATH	+= /usr/include/ 
+ LIBS		+= -lqwt -lfftw3f  -lrtlsdr  -lusb-1.0 -ldl
+diff -up sdr-j-dabreceiver-0.98/small-gui/sdr-j-dab-mini.pro.binary sdr-j-dabreceiver-0.98/small-gui/sdr-j-dab-mini.pro
+--- sdr-j-dabreceiver-0.98/small-gui/sdr-j-dab-mini.pro.binary	2015-02-26 02:10:56.000000000 +0100
++++ sdr-j-dabreceiver-0.98/small-gui/sdr-j-dab-mini.pro	2015-02-26 02:12:52.000000000 +0100
+@@ -147,7 +147,7 @@ LIBS	+= -lwinpthread
+ #
+ ##for fedora and Ubuntu use the second set
+ unix {
+-DESTDIR		= ../../../linux-bin
++DESTDIR		= ../linux-bin
+ INCLUDEPATH	+= /usr/include/qwt
+ INCLUDEPATH	+= /usr/include/ 
+ LIBS		+= -lqwt -lfftw3f  -lrtlsdr  -lusb-1.0 -ldl

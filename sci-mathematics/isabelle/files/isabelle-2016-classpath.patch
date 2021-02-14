@@ -1,0 +1,10 @@
+diff -Naur Isabelle2016/lib/Tools/java Isabelle2016-p/lib/Tools/java
+--- Isabelle2016/lib/Tools/java	2016-02-17 16:02:15.000000000 +0100
++++ Isabelle2016-p/lib/Tools/java	2016-05-04 18:45:59.055550008 +0200
+@@ -10,5 +10,5 @@
+ unset CLASSPATH
+ 
+ isabelle_java java "${JAVA_ARGS[@]}" \
+-  -classpath "$(platform_path "$ISABELLE_CLASSPATH")" "$@"
++  -classpath "$(platform_path "$ISABELLE_CLASSPATH:$(java-config -p scala-2.11)")" "$@"
+ 

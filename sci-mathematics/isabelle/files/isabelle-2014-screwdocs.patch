@@ -1,0 +1,11 @@
+--- Isabelle2014-orig/src/Doc/JEdit/JEdit.thy	2015-01-11 12:56:00.214352025 +0900
++++ Isabelle2014/src/Doc/JEdit/JEdit.thy	2015-01-11 12:56:57.202236109 +0900
+@@ -600,7 +600,7 @@ text {*
+   platforms.\footnote{Isabelle/ML on Windows uses Cygwin file-system access
+   and Unix-style path notation.} Moreover, environment variables from the
+   Isabelle process may be used freely, e.g.\ @{file
+-  "$ISABELLE_HOME/etc/symbols"} or @{file_unchecked "$POLYML_HOME/README"}.
++  "$ISABELLE_HOME/etc/symbols"} or [ebuild-patched-out: POLYML_HOME/README].
+   There are special shortcuts: @{file "~"} for @{file "$USER_HOME"} and @{file
+   "~~"} for @{file "$ISABELLE_HOME"}.
+

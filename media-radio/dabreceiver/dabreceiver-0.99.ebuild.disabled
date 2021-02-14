@@ -1,0 +1,60 @@
+# Copyright 1999-2016 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+EAPI=5
+
+inherit cmake-utils eutils qt4-r2 git-r3
+
+DESCRIPTION="SDR-J DAB/DAB+ receiver for RTL2832-based USB sticks"
+HOMEPAGE="http://www.sdr-j.tk/"
+#SRC_URI="http://www.sdr-j.tk/sdr-j-${P}.tar.gz"
+EGIT_REPO_URI="git://github.com/JvanKatwijk/sdr-j-dab/"
+EGIT_COMMIT="d3a38d037e61151140f47fa74e47d325a108ba5c"
+
+
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="sse sdrplay spectrum dabstick_osmo airspy"
+
+DEPEND="!media-radio/dabstick-radio
+	dev-qt/qtcore:4[qt3support]
+	dev-qt/qtgui:4
+	media-libs/faad2
+	media-libs/libsamplerate
+	media-libs/libsndfile
+	media-libs/portaudio
+	net-wireless/rtl-sdr
+	sci-libs/fftw:3.0
+	virtual/ffmpeg
+	virtual/libusb:1
+	x11-libs/qwt:6"
+
+RDEPEND="${DEPEND}"
+
+#S="${WORKDIR}/sdr-j-dab"
+
+src_prepare() {
+	sed -e 's#/usr/include/qwt#/usr/include/qwt6#g' \
+	    -e 's#/usr/include/qt5/qwt#/usr/include/qwt6#g' \
+		-e 's#+= sdrplay-exp#+=#' \
+		-e 's#+= airspy#+=#' \
+		-e 's#-lqwt#-lqwt6#g' \
+		-i *.pro
+	#mycmakeargs+=(
+	#	$(cmake-utils_use_build !sse NO_SSE_SUPPORT)
+	#	$(cmake-utils_use_build sdrplay SDRPLAY-EXP)
+	#	$(cmake-utils_use_build spectrum SPECTRUM)
+	#	$(cmake-utils_use_build dabstick_osmo DABSTICK_OSMO)
+	#	$(cmake-utils_use_build airspy AIRSPY)
+	#)
+	#cmake-utils_src_configure
+	eqmake4
+}
+
+src_install() {
+	cd "${BUILD_DIR}"
+	exeinto "/usr/bin"
+	newexe "linux-bin/sdr-j-dab-0.998" "${PN}"
+}

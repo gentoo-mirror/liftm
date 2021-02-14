@@ -1,0 +1,23 @@
+diff --git a/node_build/builder.js b/node_build/builder.js
+index 5b8a68d1..12151ba3 100644
+--- a/node_build/builder.js
++++ b/node_build/builder.js
+@@ -1076,7 +1076,9 @@ const postConfigure = (ctx /*:Builder_Ctx_t*/, time) => {
+             return;
+         }
+ 
+-        debug("Checking codestyle");
++        debug("Not checking codestyle");
++
++		return;
+ 
+         const sema = Saferphore.create(64);
+ 
+@@ -1092,7 +1094,6 @@ const postConfigure = (ctx /*:Builder_Ctx_t*/, time) => {
+                             linter(cFile, ret, waitFor(function (out, isErr) {
+                                 if (isErr) {
+                                     debug("\x1b[1;31m" + out + "\x1b[0m");
+-                                    ctx.failure = true;
+                                 }
+                             }));
+                         });
