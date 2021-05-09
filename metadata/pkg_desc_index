@@ -2,8 +2,6 @@ app-laptop/lmt-nc 1.69.2: Linux kernel laptop_mode user-space utilities
 dev-util/pmbootstrap 1.17.0 1.18.1 1.21.0 1.22.0 1.22.2 1.23.0 1.30.0: Sophisticated chroot/build/flash tool to develop and install postmarketOS.
 dev-util/wapm-cli 0.5.0: WebAssembly Package Manager
 dev-util/wasmer 0.11.0-r1 1.0.1: universal web assembly runtime
-games-fps/redeclipse 1.6.0: First-person ego-shooter, built as a total conversion of Cube Engine 2
-games-sports/maniadrive 1.2: ManiaDrive is a clone of Trackmania: 3D, stunts and skills!
 media-sound/teamspeak-client-bin 3.0.16: TeamSpeak Client - Voice Communication Software
 net-im/fractal 4.0.0: Matrix group messaging app
 sci-mathematics/isabelle 2017: Isabelle is a generic proof assistant
