@@ -1,0 +1,27 @@
+diff --git a/Makefile b/Makefile
+index 53cfee37a..a19b42e00 100644
+--- a/Makefile
++++ b/Makefile
+@@ -275,6 +275,9 @@ capi_compilers_engines_exclude += llvm-universal llvm-dylib
+ # We exclude singlepass-universal because it doesn't support multivalue (required in wasm-c-api tests)
+ capi_compilers_engines_exclude += singlepass-universal
+ 
++# More diff to upstream
++capi_compilers_engines_exclude += debug
++
+ capi_compilers_engines := $(filter-out $(capi_compilers_engines_exclude),$(compilers_engines))
+ 
+ #####
+@@ -338,10 +341,10 @@ $(info )
+ all: build-wasmer build-capi
+ 
+ build-wasmer:
+-	cargo build --release --manifest-path lib/cli/Cargo.toml $(compiler_features) --bin wasmer
++	cargo build --release --manifest-path lib/cli/Cargo.toml $(compiler_features),debug --bin wasmer
+ 
+ build-wasmer-debug:
+-	cargo build --manifest-path lib/cli/Cargo.toml $(compiler_features) --bin wasmer
++	cargo build --manifest-path lib/cli/Cargo.toml $(compiler_features),debug --bin wasmer
+ 
+ bench:
+ 	cargo bench $(compiler_features)
