@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit eutils games
+EAPI=7
+
+inherit eutils 
 
 SRC="ManiaDrive-${PV}-src"
 # we keep the old binary package because there is no change in data
@@ -33,7 +35,7 @@ DEPEND="media-libs/openal
 
 S=${WORKDIR}/${SRC}
 RAY=${S}/raydium
-dir=${GAMES_DATADIR}/${PN}
+dir=${DATADIR}/${PN}
 
 src_unpack() {
 	unpack "${MAIN}.tar.gz"
@@ -74,9 +76,9 @@ src_compile() {
 src_install() {
 	local f
 	for f in mania{_drive,_server,2} ; do
-		newgamesbin "${S}/${f}" "${f}.bin" \
+		dobin "${S}/${f}" "${f}.bin" \
 			|| die "newgamesbin ${f} failed"
-		games_make_wrapper "${f}" "${f}.bin" "${dir}"
+	#	games_make_wrapper "${f}" "${f}.bin" "${dir}"
 	done
 
 	insinto "${dir}"

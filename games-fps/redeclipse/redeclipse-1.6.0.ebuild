@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI=6
 
-inherit games versionator
+inherit versionator
 
 MAJOR_VERSION=$(get_version_component_range 1-2)
 
@@ -33,9 +33,9 @@ RDEPEND="${DEPEND}"
 #S=${WORKDIR}/${PN}
 
 src_prepare() {
-	# Respect GAMES_DATADIR
+	# Respect DATADIR
 	epatch "${FILESDIR}"/${P}_gamesdatadir.patch
-#	sed -e "s:\(addpackagedir(\"\)data:\1${GAMES_DATADIR}/${PN}/data:" \
+#	sed -e "s:\(addpackagedir(\"\)data:\1${DATADIR}/${PN}/data:" \
 #		-e "s:::"
 #
 #		-i src/engine/server.cpp
@@ -60,15 +60,15 @@ src_prepare() {
 		> src/install/nix/redeclipse.desktop
 
 	sed -e "s:@LIBEXECDIR@:$(games_get_libdir):g" \
-		-e "s:@DATADIR@:${GAMES_DATADIR}:g" \
-		-e "s:@DOCDIR@:${GAMES_DATADIR_BASE}/doc/${PF}:" \
+		-e "s:@DATADIR@:${DATADIR}:g" \
+		-e "s:@DOCDIR@:${DATADIR_BASE}/doc/${PF}:" \
 		-e "s:@REDECLIPSE@:${PN}:g" \
 		doc/man/redeclipse.6.am \
 		> doc/man/redeclipse.6
 
 	sed -e "s:@LIBEXECDIR@:$(games_get_libdir):g" \
-		-e "s:@DATADIR@:${GAMES_DATADIR}:g" \
-		-e "s:@DOCDIR@:${GAMES_DATADIR_BASE}/doc/${PF}:" \
+		-e "s:@DATADIR@:${DATADIR}:g" \
+		-e "s:@DOCDIR@:${DATADIR_BASE}/doc/${PF}:" \
 		-e "s:@REDECLIPSE@:${PN}:g" \
 		doc/man/redeclipse-server.6.am \
 		> doc/man/redeclipse-server.6
@@ -85,18 +85,16 @@ src_compile() {
 }
 
 src_install() {
-	dogamesbin src/${PN}_server
+	dobin src/${PN}_server
 	doman doc/man/redeclipse-server.6
 	dodoc readme.txt doc/examples/servinit.cfg
 	if ! use dedicated ; then
-		dogamesbin src/redeclipse
+		dobin src/redeclipse
 
-		insinto "${GAMES_DATADIR}"/${PN}
+		insinto "${DATADIR}"/${PN}
 		doins -r data game
 		newicon src/install/nix/${PN}_x128.png ${PN}.png
 		domenu src/install/nix/redeclipse.desktop
 		doman doc/man/redeclipse.6
 	fi
-
-	prepgamesdirs
 }
