@@ -1,0 +1,49 @@
+commit 486df6a100534bd8b60e13dfb5e253af2e917f10
+Author: Ivan Enderlin <ivan@mnt.io>
+Date:   Fri Jun 18 14:30:45 2021 +0200
+
+    fix: Set the SONAME to `libwasmer.so` on Linux.
+    
+    See https://github.com/wasmerio/wasmer/issues/2429 for more
+    context. I'm copy-pasting the original comment from @MartinKolbAtWork
+    here:
+    
+    > The shared library `libwasmer.so` does not have an `SONAME`
+    > specified. This can be checked using this command: `objdump -p
+    > libwasmer.so | grep SONAME`
+    >
+    > When `libwasmer.so` is consumed in CMake, the **linker produces a
+    > wrong output file due to the missing SONAME**.  There is a
+    > workaround for this in CMake, but according to a reply from the
+    > CMake folks, the missing SONAME is a bug that must be fixed by the
+    > library provider:
+    > https://gitlab.kitware.com/cmake/cmake/-/issues/22307#note_971562
+    > “_The libwasmer.so file should have a SONAME.  If it doesn't, that's
+    > a bug in the wasmer package_”
+    >
+    >  The problem is **inherent for all Rust builds of cdylibs**:
+    > https://github.com/rust-lang/cargo/issues/5045 The Rust community
+    > did not fix this since 2018 (see issue above), but fortunately it’s
+    > **easy to fix** for library creators. You just need to put the
+    > following code into the `build.rs` of the library:
+    >
+    > ```
+    > if cfg!(target_os = "linux") {
+    >     println!("cargo:rustc-cdylib-link-arg=-Wl,-soname,libwasmer.so");
+    > }
+    > ```
+    >
+    > I tried putting these lines into `lib/c-api/build.rs`, and then
+    > `libwasmer.so` was built correctly, including a SONAME entry.
+
+diff --git a/.cargo/config.toml b/.cargo/config.toml
+index d83dcde74..1402733db 100644
+--- a/.cargo/config.toml
++++ b/.cargo/config.toml
+@@ -2,4 +2,6 @@
+ rustflags = [
+     # Put the VM functions in the dynamic symbol table.
+     "-C", "link-arg=-Wl,-E",
++    # Fix the SONAME, required by CMake, see https://github.com/wasmerio/wasmer/issues/2429.
++    "-C", "link-arg=-Wl,-soname,libwasmer.so",
+ ]
