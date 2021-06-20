@@ -5,5 +5,4 @@ dev-util/wasmer 0.11.0-r1 1.0.1 2.0.0: universal web assembly runtime
 media-sound/teamspeak-client-bin 3.0.16: TeamSpeak Client - Voice Communication Software
 net-im/fractal 4.0.0: Matrix group messaging app
 sci-mathematics/isabelle 2017: Isabelle is a generic proof assistant
-sys-power/turbostat 3.7.1: successor to cpufrequtils distributed along Linux kernel sources
 x11-misc/xclip 0.12.1: Command-line utility to read data from standard in and place it in an X selection
