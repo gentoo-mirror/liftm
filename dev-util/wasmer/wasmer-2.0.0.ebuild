@@ -347,10 +347,12 @@ src_install() {
 	|| die "make install failed"
 	mv "$DESTDIR/lib" "$DESTDIR/lib64"
 	# Wasmer insists that its lib folder is $WASMER_INSTALL_DIR/lib, which doesn't go down well with multilib_strict_check. Uuuu hack around!
-	dodir /usr/share/wasmer
-	dosym ../../bin /usr/share/wasmer/bin
-	dosym ../../lib64 /usr/share/wasmer/lib
-	dosym ../../include /usr/share/wasmer/include
-	# For good measure
-	dosym .. /usr/share/wasmer/include/wasmer
+	if $(usex c-api true false); then
+		dodir /usr/share/wasmer
+		dosym ../../bin /usr/share/wasmer/bin
+		dosym ../../lib64 /usr/share/wasmer/lib
+		dosym ../../include /usr/share/wasmer/include
+		# For good measure
+		dosym .. /usr/share/wasmer/include/wasmer
+	fi
 }
