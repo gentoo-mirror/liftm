@@ -1,4 +1,5 @@
 app-laptop/lmt-nc 1.69.2: Linux kernel laptop_mode user-space utilities
+app-misc/rq 1.0.2: A tool for doing record analysis and transformation
 dev-util/pmbootstrap 1.17.0 1.18.1 1.21.0 1.22.0 1.22.2 1.23.0 1.30.0: Sophisticated chroot/build/flash tool to develop and install postmarketOS.
 dev-util/wapm-cli 0.5.0: WebAssembly Package Manager
 dev-util/wasmer 0.11.0-r1 1.0.1 2.0.0: universal web assembly runtime
@@ -7,5 +8,4 @@ games-sports/maniadrive 1.2: ManiaDrive is a clone of Trackmania: 3D, stunts and
 media-sound/teamspeak-client-bin 3.0.16: TeamSpeak Client - Voice Communication Software
 net-im/fractal 4.0.0: Matrix group messaging app
 net-misc/cjdns 21.1: Encrypted networking for regular people.
-sci-mathematics/isabelle 2017: Isabelle is a generic proof assistant
 x11-misc/xclip 0.12.1: Command-line utility to read data from standard in and place it in an X selection
