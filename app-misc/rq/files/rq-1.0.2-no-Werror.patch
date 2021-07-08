@@ -1,0 +1,20 @@
+diff -Naur rq-1.0.2-orig/src/lib.rs rq-1.0.2/src/lib.rs
+--- rq-1.0.2-orig/src/lib.rs	2019-11-21 06:34:26.000000000 +0900
++++ rq-1.0.2/src/lib.rs	2021-07-08 21:53:56.413736945 +0900
+@@ -3,16 +3,6 @@
+ 
+ // For pest parser generation
+ #![recursion_limit = "1024"]
+-#![deny(warnings)]
+-#![deny(clippy::all)]
+-#![deny(
+-    missing_debug_implementations,
+-    trivial_casts,
+-    trivial_numeric_casts,
+-    unused_extern_crates,
+-    unused_import_braces,
+-    unused_qualifications
+-)]
+ 
+ #[macro_use]
+ extern crate failure;
