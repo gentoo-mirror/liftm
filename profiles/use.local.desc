@@ -2,4 +2,3 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
-app-laptop/lmt-nc:scsi - Adds dependency on sdparm to control non-SATA SCSI drivers
