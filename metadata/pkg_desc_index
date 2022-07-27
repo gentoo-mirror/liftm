@@ -1,5 +1,5 @@
 app-misc/rq 1.0.2: A tool for doing record analysis and transformation
-dev-util/pmbootstrap 1.17.0 1.18.1 1.21.0 1.22.0 1.22.2 1.23.0 1.30.0 1.36.0 1.39.0 1.41.0 1.43.0: Sophisticated chroot/build/flash tool to develop and install postmarketOS.
+dev-util/pmbootstrap 1.17.0 1.18.1 1.21.0 1.22.0 1.22.2 1.23.0 1.30.0 1.36.0 1.39.0 1.41.0 1.43.0 1.45.0: Sophisticated chroot/build/flash tool to develop and install postmarketOS.
 dev-util/wapm-cli 0.5.0: WebAssembly Package Manager
 dev-util/wasmer 0.11.0-r1 1.0.1 2.0.0: universal web assembly runtime
 games-fps/redeclipse 1.6.0: First-person ego-shooter, built as a total conversion of Cube Engine 2
