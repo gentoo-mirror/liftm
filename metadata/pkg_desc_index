@@ -5,5 +5,4 @@ dev-util/wasmer 0.11.0-r1 1.0.1 2.0.0: universal web assembly runtime
 games-fps/redeclipse 1.6.0: First-person ego-shooter, built as a total conversion of Cube Engine 2
 games-sports/maniadrive 1.2: ManiaDrive is a clone of Trackmania: 3D, stunts and skills!
 net-im/fractal 4.0.0: Matrix group messaging app
-net-misc/cjdns 21.1: Encrypted networking for regular people.
 x11-misc/xclip 0.12.1: Command-line utility to read data from standard in and place it in an X selection
