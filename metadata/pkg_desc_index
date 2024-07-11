@@ -1,3 +1,2 @@
 dev-util/pmbootstrap 1.41.0 1.43.0 1.45.0 1.50.0: Sophisticated chroot/build/flash tool to develop and install postmarketOS.
 games-fps/redeclipse 1.6.0: First-person ego-shooter, built as a total conversion of Cube Engine 2
-x11-misc/xclip 0.12.1: Command-line utility to read data from standard in and place it in an X selection
